@@ -13,6 +13,12 @@ let cfg = config.services.zero-ui; in
   };
 
   config = mkIf cfg.enable {
+    nixpkgs.overlays = [
+      (self: super: {
+        zero-ui = flake.packages.${super.stdenv.hostPlatform.system}.default
+      });
+    ];
+
     systemd.services.zero-ui = {
       description = "ZeroTier Controller UI";
       environment = {
@@ -25,8 +31,8 @@ let cfg = config.services.zero-ui; in
         ZU_DATAPATH = "/var/lib/zero-ui/db.json";
       };
       serviceConfig = {
-        ExecStart = "${flake.packages.${pkgs.stdenv.hostPlatform.system}.default}/libexec/zero-ui/backend/bin/www";
-        WorkingDirectory = "${flake.packages.${pkgs.stdenv.hostPlatform.system}.default}/libexec/zero-ui/backend";
+        ExecStart = "${pkgs.zero-ui}/libexec/zero-ui/backend/bin/www";
+        WorkingDirectory = "${pkgs.zero-ui}.default}/libexec/zero-ui/backend";
         User = "zero-ui";
         StateDirectory = "zero-ui";
         EnvironmentFile = cfg.controllerSecretFile;
