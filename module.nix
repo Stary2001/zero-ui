@@ -14,7 +14,7 @@ flake: { pkgs, lib, config, ... }: with lib;
         ZU_SECURE_HEADERS = "false";
         ZU_DEFAULT_USERNAME = "admin";
         ZU_DEFAULT_PASSWORD = "admin";
-        ZU_DATAPATH = "/var/lib/zero-ui";
+        ZU_DATAPATH = "/var/lib/zero-ui/db.json";
       };
       serviceConfig = {
         ExecStart = "${flake.packages.${pkgs.stdenv.hostPlatform.system}.default}/libexec/zero-ui/backend/bin/www";
