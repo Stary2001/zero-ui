@@ -32,7 +32,7 @@ let cfg = config.services.zero-ui; in
       };
       serviceConfig = {
         ExecStart = "${pkgs.zero-ui}/libexec/zero-ui/backend/bin/www";
-        WorkingDirectory = "${pkgs.zero-ui}.default}/libexec/zero-ui/backend";
+        WorkingDirectory = "${pkgs.zero-ui}/libexec/zero-ui/backend";
         User = "zero-ui";
         StateDirectory = "zero-ui";
         EnvironmentFile = cfg.controllerSecretFile;
