@@ -16,7 +16,7 @@ let cfg = config.services.zero-ui; in
     nixpkgs.overlays = [
       (self: super: {
         zero-ui = flake.packages.${super.stdenv.hostPlatform.system}.default;
-      });
+      })
     ];
 
     systemd.services.zero-ui = {
