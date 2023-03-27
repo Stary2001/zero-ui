@@ -24,7 +24,7 @@ let cfg = config.services.zero-ui; in
       environment = {
         NODE_ENV = "production";
         # TODO: options for these?
-        ZU_SERVE_FRONTEND = "false";
+        ZU_SERVE_FRONTEND = "true";
         ZU_SECURE_HEADERS = "false";
         ZU_DEFAULT_USERNAME = "admin";
         ZU_DEFAULT_PASSWORD = "admin";
